@@ -1,16 +1,16 @@
-# 🖱 42Paris Project | ft_transcendence
+# 🖱 Transcendence
 
 <img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_title.png">
 
-## Objectives
+## Overview
 
-This project is about creating a **website** that implements a **chat**, the mighty **pong game** and an **authentication** system with 42API.  
+Transcendence is one of the projects realized at school 42. It is about creating a **website** that implements a **chat**, the mighty **pong game** and an **authentication** system with 42API. 
 
 **Languages / Frameworks used:**  
 - Backend: NestJS, PostgreSQL, Prisma  
 - Frontend: Svelte, Tailwind CSS  
 
-The project run with docker and docker-compose.  
+The project runs with docker and docker-compose.  
 
 **Authentication features:**  
 - User must login using **OAuth** system of 42 Intranet. (You must be a 42 Student)  
@@ -44,7 +44,7 @@ When a user wins a match he earns a point. On the other hand, when he loses a ma
 The **website** is accessible at the address http://localhost:3333/ once containers are up.  
 You can access the **database** at http://localhost:5555/.  
 
-You have to create a .env file in the **backend repository**. See an example below:
+Before launching Docker, you have to create a .env file in the **backend repository**. See an example below:
 ```
 POSTGRES_USERNAME=postgres
 POSTGRES_PASSWORD=123
