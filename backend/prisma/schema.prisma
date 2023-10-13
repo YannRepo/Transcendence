@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id         Int      @id @default(autoincrement())
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    email      String   @unique
+    username   String   @unique
+    isLogged   Boolean
+    inChat     Boolean
+    inGame     Boolean
+    gamesWon   Int      @default(0)
+    gamesLost  Int      @default(0)
+    score      Int      @default(0)
+    userSecret String?
+    firstLogin Boolean  @default(true)
+    avatar     Avatar?  @relation(fields: [avatarId], references: [id])
+
+    avatarId          Int?
+    IstwoFactorAuth   Boolean
+    IsSigninWith42    Boolean
+    hash              String? //mdp
+    hashedRt          String?          @unique // will store the hash of the refresh token*
+    blockedIds        Int[]
+    achievementChat   Boolean          @default(false)
+    achievementPong   Boolean          @default(false)
+    achievementAvatar Boolean          @default(false)
+    message           ChannelMessage[]
+    channelUser       ChannelUser[]
+    friends           Friends[]
+}
+
+model Friends {
+    id       Int  @id @default(autoincrement())
+    userId   Int
+    friendId Int
+    User     User @relation(fields: [userId], references: [id])
+}
+
+model Avatar {
+    id       Int     @id @default(autoincrement())
+    filename String
+    data     Bytes
+    userId   Int
+    url42    String?
+    User     User[]
+}
+
+// ------------------------------------------------------------
+// CHAT PART
+// ------------------------------------------------------------
+// Public: No password, everyone can come
+// Protected: Password needed
+// Private: Nobody else can come in the channel
+// Conversation: Mean a channel between two users only (private messages)
+enum ChannelType {
+    PUBLIC
+    PROTECTED
+    PRIVATE
+    CONVERSATION
+}
+
+enum ChannelUserRole {
+    NORMAL
+    ADMIN
+    OWNER
+}
+
+model Channel {
+    id           Int              @id @default(autoincrement())
+    name         String?
+    description  String?
+    password     String?
+    type         ChannelType
+    createdAt    DateTime         @default(now())
+    updatedAt    DateTime         @updatedAt()
+    messages     ChannelMessage[]
+    channelUsers ChannelUser[]
+}
+
+model ChannelUser {
+    id        Int             @id @default(autoincrement())
+    userId    Int
+    user      User            @relation(fields: [userId], references: [id])
+    channelId Int
+    channel   Channel         @relation(fields: [channelId], references: [id])
+    role      ChannelUserRole
+    socketIds String[]
+}
+
+model ChannelMessage {
+    id         Int      @id @default(autoincrement())
+    createdAt  DateTime @default(now())
+    channelId  Int
+    channel    Channel  @relation(fields: [channelId], references: [id])
+    fromUserId Int
+    fromUser   User     @relation(fields: [fromUserId], references: [id])
+    message    String
+}
+
+model SourceBans {
+    id            Int      @id @default(autoincrement())
+    userId        Int
+    channelId     Int
+    adminUsername String
+    type          String
+    createdAt     DateTime @default(now())
+    expireAt      DateTime
+    duration      Int
+    reason        String
+}
+
+// ------------------------------------------------------------
+
+model runningames {
+    id                 Int     @id @default(autoincrement())
+    name               String
+    idPlayer1          Int
+    idPlayer2          Int
+    hardMode           Boolean @default(false)
+    isReadInPongModule Boolean @default(false)
+}
+
+model gameHistory {
+    id           Int      @id @default(autoincrement())
+    date         DateTime @default(now())
+    idPlayer1    Int
+    idPlayer2    Int
+    scorePlayer1 Int
+    scorePlayer2 Int
+    idWinner     Int
+}

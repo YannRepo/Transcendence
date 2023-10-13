@@ -1,0 +1,15 @@
+# Ignore files and directories commonly excluded in Docker builds
+
+# Files
+.dockerignore
+.dockerignore.example
+.dockerignore.sample
+.git
+.gitignore
+
+# Directories
+node_modules/
+dist/
+build/
+logs/
+tmp/

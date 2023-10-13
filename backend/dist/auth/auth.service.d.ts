@@ -1,0 +1,31 @@
+import { PrismaService } from "src/prisma/prisma.service";
+import { signupDto, SigninDto } from "./dto";
+import { Tokens, JwtPayload, signinResponse } from "./types";
+import { AtStrategy } from "./strategies";
+import { JwtService } from "@nestjs/jwt";
+import { User } from "@prisma/client";
+export declare class AuthService {
+    private prisma;
+    private jwtService;
+    private readonly atStrategy;
+    constructor(prisma: PrismaService, jwtService: JwtService, atStrategy: AtStrategy);
+    signupLocal(signupDto: signupDto): Promise<User>;
+    signinLocal(SigninDto: SigninDto): Promise<signinResponse>;
+    activate2FA(user: User): Promise<boolean>;
+    validate2FACode(userId: number, validationCode: string): Promise<boolean>;
+    verify2FACode(userId: number, validationCode: string): Promise<boolean>;
+    generate2FAsecret(userId: number): Promise<string>;
+    getUserInfo(accessToken: string): Promise<any>;
+    getAccessToken(code: string): Promise<string | null>;
+    create42UserSession(accessToken: string): Promise<Tokens>;
+    signin42API(): Promise<string>;
+    logout(userId: number): Promise<void>;
+    refreshTokens(userId: number, rt: string): Promise<Tokens>;
+    hashData(data: string): Promise<string>;
+    getUser2FA(authorizationHeader: string): Promise<User>;
+    getMe(authorizationHeader: string): Promise<User>;
+    updateRtHash(userId: number, rt: string): Promise<void>;
+    getTokens(userId: number, email: string): Promise<Tokens>;
+    parseToken(authorizationHeader: string): Promise<JwtPayload>;
+    setFirstLoginFalse(userId: number): Promise<User>;
+}
