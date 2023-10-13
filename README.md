@@ -1,6 +1,6 @@
 # 🖱 Transcendence
 
-<img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_title.png">
+<img src="https://raw.githubusercontent.com/YannRepo/Transcendence/main/files/SCR_title.png">
 
 ## Overview
 
@@ -78,9 +78,9 @@ This project was carried out by 4 others people:
 
 ## Screenshots
 
-<img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_home.png">
-<img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_pong.png">
-<img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_signup.png">
-<img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_profile.png">
-<img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_chat.png">
-<img src="https://github.com/William-Dbt/ft_transcendence/blob/main/files/SCR_channels.png">
+<img src="https://raw.githubusercontent.com/YannRepo/Transcendence/main/files/SCR_home.png">
+<img src="https://raw.githubusercontent.com/YannRepo/Transcendence/main/files/SCR_pong.png">
+<img src="https://raw.githubusercontent.com/YannRepo/Transcendence/main/files/files/SCR_signup.png">
+<img src="https://raw.githubusercontent.com/YannRepo/Transcendence/main/files/files/SCR_profile.png">
+<img src="https://raw.githubusercontent.com/YannRepo/Transcendence/main/files/SCR_chat.png">
+<img src="https://raw.githubusercontent.com/YannRepo/Transcendence/main/files/SCR_channels.png">
